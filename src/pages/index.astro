@@ -6,8 +6,232 @@ import Layout from '../layouts/Layout.astro';
   title="Furniture Assembly Fort Smith | Expert Assembly Services"
   description="Expert furniture assembly in Fort Smith, Arkansas. Transparent flat-rate pricing. IKEA, Wayfair, Amazon - We assemble it all. 100% satisfaction guaranteed."
 >
-  <main>
+  <section class="hero">
     <h1>Expert Furniture Assembly in Fort Smith. Done Right, Guaranteed.</h1>
-    <p>Welcome to Furniture Assembly Fort Smith - your local furniture assembly specialists.</p>
-  </main>
+    <p class="lead">Fort Smith's only dedicated furniture assembly specialist. Professional, reliable, and transparent.</p>
+    <div class="cta-buttons">
+      <a href="/contact" class="btn btn-primary">Get Your Free Quote</a>
+      <a href="/pricing" class="btn btn-secondary">View Pricing</a>
+    </div>
+  </section>
+
+  <section class="value-props">
+    <h2>Why Choose Us?</h2>
+    <div class="props-grid">
+      <div class="prop-card">
+        <h3>💰 Transparent Pricing</h3>
+        <p>No hidden fees. Flat-rate pricing you can trust.</p>
+      </div>
+      <div class="prop-card">
+        <h3>🏠 Local & Reliable</h3>
+        <p>Fort Smith owned and operated. On time, every time.</p>
+      </div>
+      <div class="prop-card">
+        <h3>🛠️ Expert Assembly</h3>
+        <p>IKEA, Wayfair, Amazon - We assemble it all.</p>
+      </div>
+      <div class="prop-card">
+        <h3>✅ 100% Guarantee</h3>
+        <p>Satisfaction guaranteed or we make it right.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-overview">
+    <h2>We Assemble Furniture From All Major Retailers</h2>
+    <div class="retailers">
+      <p>IKEA • Wayfair • Amazon • Target • Walmart • Ashley Furniture</p>
+    </div>
+    <ul class="service-list">
+      <li>Beds & Bed Frames</li>
+      <li>Dressers & Wardrobes</li>
+      <li>Desks & Office Furniture</li>
+      <li>Dining Tables & Chairs</li>
+      <li>Bookshelves & Storage</li>
+      <li>And Much More!</li>
+    </ul>
+    <a href="/services" class="btn btn-link">View All Services →</a>
+  </section>
+
+  <section class="service-area-cta">
+    <h2>Serving Fort Smith & Arkansas River Valley</h2>
+    <p>We proudly serve Fort Smith, Van Buren, Alma, Greenwood, and surrounding areas.</p>
+    <a href="/service-area" class="btn btn-secondary">See Full Service Area</a>
+  </section>
 </Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, var(--color-accent) 0%, #ffffff 100%);
+    border-radius: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-secondary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #16a085;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background-color: #1a252f;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .btn-link {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .value-props {
+    margin-bottom: 3rem;
+  }
+
+  .value-props h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .props-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .prop-card {
+    background: var(--color-accent);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .prop-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  .services-overview {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .services-overview h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .retailers {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .service-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .service-list li {
+    padding: 0.75rem 1rem;
+    background: var(--color-accent);
+    border-radius: 5px;
+    font-weight: 500;
+  }
+
+  .service-list li:before {
+    content: "✓ ";
+    color: var(--color-secondary);
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  .service-area-cta {
+    background: var(--color-primary);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .service-area-cta h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-area-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+    }
+
+    .props-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .service-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

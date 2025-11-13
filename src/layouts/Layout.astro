@@ -1,4 +1,7 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -27,7 +30,11 @@ const { title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <Header />
+    <main class="main-content">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
 
@@ -56,6 +63,17 @@ const { title, description } = Astro.props;
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
   }
 
   h1,
@@ -77,5 +95,23 @@ const { title, description } = Astro.props;
 
   a:hover {
     text-decoration: underline;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  ul, ol {
+    margin-bottom: 1rem;
+  }
+
+  section {
+    margin-bottom: 2rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
   }
 </style>
