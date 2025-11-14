@@ -60,7 +60,115 @@
           <p>* Minimum service fee: $85</p>
         </div>
 
-        <a href="/contact" class="book-button">Book This Service</a>
+        <button class="book-button" id="book-service-btn" disabled>
+          Book This Service
+        </button>
+        <p class="book-note">Select items to enable booking</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quote Booking Modal -->
+  <div class="modal-overlay" id="booking-modal" style="display: none;">
+    <div class="modal-content">
+      <button class="modal-close" id="close-modal">&times;</button>
+
+      <div class="modal-header">
+        <h3>Complete Your Booking</h3>
+        <p>We'll contact you within 24 hours to schedule your assembly service</p>
+      </div>
+
+      <div class="modal-body">
+        <!-- Quote Summary -->
+        <div class="quote-summary">
+          <h4>Your Quote Summary</h4>
+          <div id="modal-items-list"></div>
+          <div class="quote-total">
+            <span>Total Estimate:</span>
+            <span id="modal-total">$0</span>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form class="booking-form" id="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="booking-name">Your Name *</label>
+              <input
+                type="text"
+                id="booking-name"
+                name="name"
+                required
+                minlength="2"
+                placeholder="John Smith"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="booking-phone">Phone Number *</label>
+              <input
+                type="tel"
+                id="booking-phone"
+                name="phone"
+                required
+                placeholder="(479) 555-0123"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="booking-email">Email Address *</label>
+            <input
+              type="email"
+              id="booking-email"
+              name="email"
+              required
+              placeholder="john@example.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="preferred-date">Preferred Date (Optional)</label>
+            <input
+              type="date"
+              id="preferred-date"
+              name="preferred_date"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="additional-notes">Additional Notes (Optional)</label>
+            <textarea
+              id="additional-notes"
+              name="additional_notes"
+              rows="3"
+              placeholder="Any specific requirements or questions?"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-booking-btn" id="submit-booking">
+            <span class="btn-text">Request This Quote</span>
+            <span class="btn-spinner hidden">
+              <span class="spinner"></span>
+              Submitting...
+            </span>
+          </button>
+        </form>
+
+        <!-- Success/Error Messages -->
+        <div class="booking-success hidden" id="booking-success">
+          <div class="success-icon">✓</div>
+          <h4>Request Received!</h4>
+          <p>Thank you for your quote request. We'll contact you within 24 hours to confirm your booking and schedule the service.</p>
+          <button class="close-success-btn" id="close-success">Close</button>
+        </div>
+
+        <div class="booking-error hidden" id="booking-error">
+          <div class="error-icon">✕</div>
+          <h4>Something Went Wrong</h4>
+          <p>We couldn't submit your request. Please try again or call us directly at <strong>(479) 555-0123</strong>.</p>
+          <button class="retry-btn" id="retry-booking">Try Again</button>
+        </div>
       </div>
     </div>
   </div>
@@ -298,13 +406,298 @@
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
   }
 
-  .book-button:hover {
+  .book-button:hover:not(:disabled) {
     background-color: #16a085;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: var(--color-white);
+  }
+
+  .book-button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .book-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+  }
+
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-content {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--color-text);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.5rem;
+    z-index: 1;
+  }
+
+  .modal-close:hover {
+    color: var(--color-primary);
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .modal-header h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-white);
+  }
+
+  .modal-header p {
+    color: var(--color-accent);
+    font-size: 1rem;
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .quote-summary {
+    background-color: var(--color-accent);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .quote-summary h4 {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  #modal-items-list {
+    margin-bottom: 1rem;
+  }
+
+  .modal-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.95rem;
+  }
+
+  .modal-item:last-child {
+    border-bottom: none;
+  }
+
+  .quote-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    padding-top: 1rem;
+    border-top: 2px solid var(--color-primary);
+    margin-top: 1rem;
+  }
+
+  .booking-form {
+    margin-top: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+  }
+
+  .submit-booking-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+
+  .submit-booking-btn:hover:not(:disabled) {
+    background-color: #16a085;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .submit-booking-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .booking-success,
+  .booking-error {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .success-icon,
+  .error-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .success-icon {
+    color: #28a745;
+  }
+
+  .error-icon {
+    color: #e74c3c;
+  }
+
+  .booking-success h4 {
+    color: #155724;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .booking-error h4 {
+    color: #721c24;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .booking-success p {
+    color: #155724;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .booking-error p {
+    color: #721c24;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .close-success-btn,
+  .retry-btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .close-success-btn {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .close-success-btn:hover {
+    background-color: #218838;
+  }
+
+  .retry-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+
+  .retry-btn:hover {
+    background-color: #c0392b;
   }
 
   /* Responsive Design */
@@ -337,6 +730,27 @@
 
     .total-row {
       font-size: 1.25rem;
+    }
+
+    .modal-content {
+      max-width: 100%;
+      border-radius: 0;
+    }
+
+    .modal-header {
+      padding: 1.5rem;
+    }
+
+    .modal-header h3 {
+      font-size: 1.5rem;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -504,6 +918,7 @@
     const discountRow = document.getElementById('discount-row') as HTMLElement | null;
     const discountAmountEl = document.getElementById('discount-amount');
     const totalAmountEl = document.getElementById('total-amount');
+    const bookButton = document.getElementById('book-service-btn') as HTMLButtonElement | null;
 
     if (!selectedItemsList || !subtotalEl || !discountRow || !discountAmountEl || !totalAmountEl) return;
 
@@ -539,5 +954,144 @@
     // Apply minimum service fee
     const finalTotal = Math.max(total, 85);
     totalAmountEl.textContent = `$${finalTotal}`;
+
+    // Enable/disable book button
+    if (bookButton) {
+      bookButton.disabled = selectedItems.length === 0;
+    }
   }
+
+  // Modal handling
+  document.addEventListener('DOMContentLoaded', () => {
+    const bookButton = document.getElementById('book-service-btn');
+    const modal = document.getElementById('booking-modal') as HTMLElement | null;
+    const closeModal = document.getElementById('close-modal');
+    const bookingForm = document.getElementById('booking-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('submit-booking') as HTMLButtonElement | null;
+    const btnText = submitBtn?.querySelector('.btn-text') as HTMLElement;
+    const btnSpinner = submitBtn?.querySelector('.btn-spinner') as HTMLElement;
+    const successDiv = document.getElementById('booking-success');
+    const errorDiv = document.getElementById('booking-error');
+    const closeSuccessBtn = document.getElementById('close-success');
+    const retryBtn = document.getElementById('retry-booking');
+
+    // Open modal
+    bookButton?.addEventListener('click', () => {
+      if (modal && selectedItems.length > 0) {
+        // Populate modal with selected items
+        const modalItemsList = document.getElementById('modal-items-list');
+        const modalTotal = document.getElementById('modal-total');
+
+        if (modalItemsList && modalTotal) {
+          modalItemsList.innerHTML = selectedItems.map(item => `
+            <div class="modal-item">
+              <span>${item.name}</span>
+              <span>$${item.price}</span>
+            </div>
+          `).join('');
+
+          // Calculate total
+          const subtotal = selectedItems.reduce((sum, item) => sum + item.price, 0);
+          const discount = selectedItems.length >= 5 ? Math.round(subtotal * 0.1) : 0;
+          const total = Math.max(subtotal - discount, 85);
+          modalTotal.textContent = `$${total}`;
+        }
+
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    // Close modal
+    function closeModalHandler() {
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        bookingForm?.reset();
+        successDiv?.classList.add('hidden');
+        errorDiv?.classList.add('hidden');
+        bookingForm?.classList.remove('hidden');
+      }
+    }
+
+    closeModal?.addEventListener('click', closeModalHandler);
+    closeSuccessBtn?.addEventListener('click', closeModalHandler);
+
+    // Close on overlay click
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModalHandler();
+      }
+    });
+
+    // Retry button
+    retryBtn?.addEventListener('click', () => {
+      errorDiv?.classList.add('hidden');
+      bookingForm?.classList.remove('hidden');
+    });
+
+    // Handle form submission
+    bookingForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!submitBtn || !btnText || !btnSpinner) return;
+
+      // Get form data
+      const formData = new FormData(bookingForm);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const phone = formData.get('phone') as string;
+      const preferredDate = formData.get('preferred_date') as string;
+      const additionalNotes = formData.get('additional_notes') as string;
+
+      // Calculate total
+      const subtotal = selectedItems.reduce((sum, item) => sum + item.price, 0);
+      const discount = selectedItems.length >= 5 ? Math.round(subtotal * 0.1) : 0;
+      const estimatedTotal = Math.max(subtotal - discount, 85);
+
+      // Show loading state
+      submitBtn.disabled = true;
+      btnText.classList.add('hidden');
+      btnSpinner.classList.remove('hidden');
+
+      try {
+        // Dynamically import the webhook utility
+        const { submitLead } = await import('../utils/webhook');
+
+        const result = await submitLead({
+          name,
+          email,
+          phone,
+          preferred_date: preferredDate,
+          additional_notes: additionalNotes,
+          selected_items: selectedItems.map(item => ({
+            item: item.name,
+            price: item.price
+          })),
+          subtotal,
+          estimated_total: estimatedTotal,
+          source: 'quote_calculator',
+          timestamp: new Date().toISOString(),
+        });
+
+        if (result.success) {
+          // Show success message
+          bookingForm.classList.add('hidden');
+          successDiv?.classList.remove('hidden');
+        } else {
+          throw new Error(result.error || 'Submission failed');
+        }
+      } catch (error) {
+        console.error('Booking submission error:', error);
+        // Show error message
+        bookingForm.classList.add('hidden');
+        errorDiv?.classList.remove('hidden');
+      } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        btnText.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      }
+    });
+  });
 </script>

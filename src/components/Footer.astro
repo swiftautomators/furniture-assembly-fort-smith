@@ -1,5 +1,6 @@
 ---
 // Footer component for Furniture Assembly Fort Smith
+import { CONTACT_INFO } from '../config';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -32,11 +33,11 @@ const currentYear = new Date().getFullYear();
         <ul class="contact-list">
           <li>
             <strong>Phone:</strong>
-            <a href="tel:+14795550123">(479) 555-0123</a>
+            <a href={`tel:+1${CONTACT_INFO.phoneRaw}`}>{CONTACT_INFO.phone}</a>
           </li>
           <li>
             <strong>Email:</strong>
-            <a href="mailto:info@furnitureassemblyfortsmith.com">info@furnitureassemblyfortsmith.com</a>
+            <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
           </li>
         </ul>
       </div>
