@@ -343,7 +343,7 @@
 
 <script>
   // Furniture items with pricing (using low-end tier estimates)
-  const furnitureItems = {
+  const furnitureItems: Record<string, Array<{ name: string; price: number }>> = {
     bedroom: [
       { name: 'Twin/Full Bed', price: 110 },
       { name: 'Queen/King Bed', price: 130 },
@@ -394,15 +394,23 @@
   };
 
   // Track selected items
-  let selectedItems = [];
+  interface SelectedItem {
+    name: string;
+    price: number;
+    id: string;
+  }
+
+  let selectedItems: SelectedItem[] = [];
 
   // Initialize calculator
   document.addEventListener('DOMContentLoaded', () => {
-    const categorySelect = document.getElementById('category-select');
+    const categorySelect = document.getElementById('category-select') as HTMLSelectElement | null;
     const itemsContainer = document.getElementById('items-container');
 
+    if (!categorySelect || !itemsContainer) return;
+
     // Create item groups for each category
-    Object.keys(furnitureItems).forEach(category => {
+    Object.keys(furnitureItems).forEach((category: string) => {
       const groupDiv = document.createElement('div');
       groupDiv.className = 'items-group';
       groupDiv.id = `items-${category}`;
@@ -411,42 +419,47 @@
       title.textContent = getCategoryTitle(category);
       groupDiv.appendChild(title);
 
-      furnitureItems[category].forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'item-checkbox';
+      const items = furnitureItems[category];
+      if (items) {
+        items.forEach((item: { name: string; price: number }, index: number) => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'item-checkbox';
 
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = `${category}-${index}`;
-        checkbox.dataset.category = category;
-        checkbox.dataset.index = index;
-        checkbox.addEventListener('change', handleItemToggle);
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.id = `${category}-${index}`;
+          checkbox.dataset.category = category;
+          checkbox.dataset.index = String(index);
+          checkbox.addEventListener('change', handleItemToggle);
 
-        const label = document.createElement('label');
-        label.htmlFor = `${category}-${index}`;
-        label.innerHTML = `
-          <span class="item-name">${item.name}</span>
-          <span class="item-price">$${item.price}</span>
-        `;
+          const label = document.createElement('label');
+          label.htmlFor = `${category}-${index}`;
+          label.innerHTML = `
+            <span class="item-name">${item.name}</span>
+            <span class="item-price">$${item.price}</span>
+          `;
 
-        itemDiv.appendChild(checkbox);
-        itemDiv.appendChild(label);
-        groupDiv.appendChild(itemDiv);
-      });
+          itemDiv.appendChild(checkbox);
+          itemDiv.appendChild(label);
+          groupDiv.appendChild(itemDiv);
+        });
+      }
 
       itemsContainer.appendChild(groupDiv);
     });
 
     // Handle category selection
-    categorySelect.addEventListener('change', (e) => {
+    categorySelect.addEventListener('change', (e: Event) => {
+      const target = e.target as HTMLSelectElement;
+
       // Hide all groups
       document.querySelectorAll('.items-group').forEach(group => {
         group.classList.remove('active');
       });
 
       // Show selected group
-      if (e.target.value) {
-        const selectedGroup = document.getElementById(`items-${e.target.value}`);
+      if (target.value) {
+        const selectedGroup = document.getElementById(`items-${target.value}`);
         if (selectedGroup) {
           selectedGroup.classList.add('active');
         }
@@ -454,8 +467,8 @@
     });
   });
 
-  function getCategoryTitle(category) {
-    const titles = {
+  function getCategoryTitle(category: string): string {
+    const titles: Record<string, string> = {
       bedroom: 'Bedroom Furniture',
       living: 'Living Room Furniture',
       office: 'Office Furniture',
@@ -465,11 +478,16 @@
     return titles[category] || category;
   }
 
-  function handleItemToggle(e) {
-    const checkbox = e.target;
-    const category = checkbox.dataset.category;
-    const index = parseInt(checkbox.dataset.index);
-    const item = furnitureItems[category][index];
+  function handleItemToggle(e: Event): void {
+    const checkbox = e.target as HTMLInputElement;
+    const category = checkbox.dataset.category || '';
+    const index = parseInt(checkbox.dataset.index || '0');
+    const items = furnitureItems[category];
+
+    if (!items) return;
+
+    const item = items[index];
+    if (!item) return;
 
     if (checkbox.checked) {
       selectedItems.push({ ...item, id: `${category}-${index}` });
@@ -480,12 +498,14 @@
     updateTotal();
   }
 
-  function updateTotal() {
+  function updateTotal(): void {
     const selectedItemsList = document.getElementById('selected-items-list');
     const subtotalEl = document.getElementById('subtotal');
-    const discountRow = document.getElementById('discount-row');
+    const discountRow = document.getElementById('discount-row') as HTMLElement | null;
     const discountAmountEl = document.getElementById('discount-amount');
     const totalAmountEl = document.getElementById('total-amount');
+
+    if (!selectedItemsList || !subtotalEl || !discountRow || !discountAmountEl || !totalAmountEl) return;
 
     // Update selected items list
     if (selectedItems.length === 0) {
