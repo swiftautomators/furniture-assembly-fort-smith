@@ -1,13 +1,553 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
 ---
 
 <Layout
   title="Furniture Assembly Fort Smith | Expert Assembly Services"
   description="Expert furniture assembly in Fort Smith, Arkansas. Transparent flat-rate pricing. IKEA, Wayfair, Amazon - We assemble it all. 100% satisfaction guaranteed."
 >
-  <main>
-    <h1>Expert Furniture Assembly in Fort Smith. Done Right, Guaranteed.</h1>
-    <p>Welcome to Furniture Assembly Fort Smith - your local furniture assembly specialists.</p>
-  </main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1 class="hero-headline">Expert Furniture Assembly in Fort Smith. Done Right, Guaranteed.</h1>
+      <p class="hero-subheadline">
+        We build your furniture so you don't have to. Fast, reliable service with transparent, flat-rate pricing.
+      </p>
+      <div class="hero-ctas">
+        <a href="/contact" class="cta-primary">Get Your Free Instant Quote</a>
+        <a href="tel:+14795550123" class="cta-secondary">
+          <span class="phone-icon">📞</span>
+          Call Now: (479) 555-0123
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="trust-bar">
+    <div class="container">
+      <p class="trust-bar-title">We Assemble Furniture From:</p>
+      <div class="brand-logos">
+        <div class="brand-logo">IKEA</div>
+        <div class="brand-logo">Wayfair</div>
+        <div class="brand-logo">Amazon</div>
+        <div class="brand-logo">Target</div>
+        <div class="brand-logo">Walmart</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-us">
+    <div class="container">
+      <h2 class="section-title">Why Choose Furniture Assembly Fort Smith?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🛠️</div>
+          <h3>Dedicated Specialists</h3>
+          <p>We only do furniture assembly. Our expertise means your furniture is built right, every time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Transparent Pricing</h3>
+          <p>Get an instant quote online. No hidden fees, no surprise charges.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏠</div>
+          <h3>Local & Reliable</h3>
+          <p>We're your neighbors in Fort Smith. We show up on time and stand by our work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview Section -->
+  <section class="services-overview">
+    <div class="container">
+      <h2 class="section-title">Our Assembly Services</h2>
+      <p class="section-intro">From bedroom sets to office furniture, we handle it all with precision and care.</p>
+      <div class="services-grid">
+        <div class="service-item">
+          <div class="service-icon">🛏️</div>
+          <h3>Bedroom Furniture</h3>
+          <p>Beds, dressers, nightstands</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">💼</div>
+          <h3>Office Furniture</h3>
+          <p>Desks, chairs, bookcases</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🛋️</div>
+          <h3>Living Room</h3>
+          <p>Entertainment centers, tables</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🍽️</div>
+          <h3>Dining Furniture</h3>
+          <p>Tables, chairs, buffets</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🌳</div>
+          <h3>Outdoor Furniture</h3>
+          <p>Patio sets, grills, gazebos</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">🏢</div>
+          <h3>Commercial</h3>
+          <p>Office systems, retail fixtures</p>
+        </div>
+      </div>
+      <div class="services-cta">
+        <a href="/services" class="btn-secondary">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Get Your Quote</h3>
+          <p>Select your items online or give us a call for an instant, flat-rate quote.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Schedule Your Service</h3>
+          <p>Pick a time that works for you. We offer flexible scheduling, including weekends.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>We Assemble</h3>
+          <p>Our expert team builds your furniture perfectly, quickly, and cleans up when done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Customers Say</h2>
+      <div class="testimonials-grid">
+        <TestimonialCard
+          quote="Absolutely fantastic service! They assembled my entire IKEA bedroom set in under 2 hours. Professional, friendly, and the pricing was exactly what they quoted. Highly recommend!"
+          name="Sarah Martinez"
+          city="Fort Smith, AR"
+        />
+        <TestimonialCard
+          quote="I've used them twice now - once for my home office and once for my living room furniture. Both times they were on time, efficient, and did perfect work. Worth every penny!"
+          name="James Thompson"
+          city="Van Buren, AR"
+        />
+        <TestimonialCard
+          quote="Finally, a furniture assembly service that actually shows up when they say they will! Great communication, fair prices, and they even helped me move the assembled pieces into place. Will use again."
+          name="Lisa Chen"
+          city="Fort Smith, AR"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready to Get Your Furniture Assembled?</h2>
+      <p>Join hundreds of satisfied customers in Fort Smith and the Arkansas River Valley.</p>
+      <a href="/contact" class="cta-primary">Get Your Free Instant Quote</a>
+      <p class="guarantee">100% Satisfaction Guaranteed • Licensed & Insured</p>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    padding: 5rem 0;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-headline {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+    line-height: 1.2;
+  }
+
+  .hero-subheadline {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-accent);
+    line-height: 1.6;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-primary:hover {
+    background-color: #16a085;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: var(--color-white);
+  }
+
+  .cta-secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--color-white);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .cta-secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+  }
+
+  .phone-icon {
+    font-size: 1.3rem;
+  }
+
+  /* Trust Bar */
+  .trust-bar {
+    background-color: var(--color-accent);
+    padding: 2rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .trust-bar-title {
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .brand-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .brand-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .brand-logo:hover {
+    opacity: 1;
+  }
+
+  /* Sections */
+  section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .section-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Why Choose Us */
+  .why-choose-us {
+    background-color: var(--color-white);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .feature-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .feature-card p {
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  /* Services Overview */
+  .services-overview {
+    background-color: var(--color-accent);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .service-item {
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .service-item p {
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+
+  .services-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.875rem 2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+    color: var(--color-white);
+  }
+
+  /* How It Works */
+  .how-it-works {
+    background-color: var(--color-white);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .step {
+    text-align: center;
+  }
+
+  .step-number {
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+    font-family: var(--font-heading);
+  }
+
+  .step h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .step p {
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    background-color: var(--color-accent);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  /* Final CTA */
+  .final-cta {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .final-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+  }
+
+  .final-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--color-accent);
+  }
+
+  .guarantee {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 0;
+    }
+
+    .hero-headline {
+      font-size: 2rem;
+    }
+
+    .hero-subheadline {
+      font-size: 1.2rem;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 0.875rem 1.5rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .brand-logos {
+      gap: 1.5rem;
+    }
+
+    .brand-logo {
+      font-size: 1.2rem;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .features-grid,
+    .services-grid,
+    .steps-grid,
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-headline {
+      font-size: 1.75rem;
+    }
+
+    .hero-subheadline {
+      font-size: 1.1rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .final-cta h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
