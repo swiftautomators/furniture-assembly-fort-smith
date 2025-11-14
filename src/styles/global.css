@@ -1,0 +1,81 @@
+/* Global Styles for Furniture Assembly Fort Smith */
+
+:root {
+  /* Brand Colors from PROJECT_BRIEF.md */
+  --color-primary: #2c3e50;    /* Deep Blue - Trust, professionalism */
+  --color-secondary: #1abc9c;  /* Teal Green - Quality, positive outcomes */
+  --color-accent: #ecf0f1;     /* Light Gray - Clean, modern */
+  --color-text: #34495e;       /* Dark Gray - Readable, professional */
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+/* Buttons */
+button, .button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
