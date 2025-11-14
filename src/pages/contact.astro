@@ -240,6 +240,11 @@ import { CONTACT_INFO, SERVICE_TYPES } from '../config';
 </Layout>
 
 <style>
+  /* Utility Classes */
+  .hidden {
+    display: none !important;
+  }
+
   /* Page Header */
   .page-header {
     background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
@@ -912,6 +917,16 @@ import { CONTACT_INFO, SERVICE_TYPES } from '../config';
       console.error('Contact form elements not found');
       return;
     }
+
+    // Ensure loading states are hidden on page load
+    if (buttonSpinner) buttonSpinner.classList.add('hidden');
+    if (buttonText) buttonText.classList.remove('hidden');
+
+    // Ensure success/error messages are hidden on page load
+    if (successMessage) successMessage.classList.add('hidden');
+    if (errorMessage) errorMessage.classList.add('hidden');
+
+    console.log('Contact form initialized successfully');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();

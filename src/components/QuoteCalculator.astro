@@ -175,6 +175,11 @@
 </div>
 
 <style>
+  /* Utility Classes */
+  .hidden {
+    display: none !important;
+  }
+
   .quote-calculator {
     background-color: var(--color-white);
     border-radius: 10px;
@@ -979,6 +984,18 @@
       console.error('Quote calculator modal elements not found');
       return;
     }
+
+    // Ensure modal is hidden on page load
+    modal.style.display = 'none';
+
+    // Ensure loading states are hidden
+    if (btnSpinner) btnSpinner.classList.add('hidden');
+    if (btnText) btnText.classList.remove('hidden');
+
+    // Ensure success/error messages are hidden
+    if (successDiv) successDiv.classList.add('hidden');
+    if (errorDiv) errorDiv.classList.add('hidden');
+    if (bookingForm) bookingForm.classList.remove('hidden');
 
     console.log('Quote calculator initialized successfully');
 
