@@ -4,31 +4,776 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Contact Us | Furniture Assembly Fort Smith"
-  description="Contact Furniture Assembly Fort Smith for a free quote. Call, email, or fill out our contact form. Same-day and next-day availability."
+  description="Contact Furniture Assembly Fort Smith for a free quote. Call (479) 555-0123, email us, or fill out our contact form. Same-day and next-day availability."
 >
-  <main>
-    <h1>Contact Us</h1>
-    <p>Get in touch for your free instant quote.</p>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Get in Touch</h1>
+      <p class="intro">
+        Ready to get your furniture assembled? We're here to help! Reach out for a free quote or to schedule your service.
+      </p>
+    </div>
+  </section>
 
-    <section>
-      <h2>Get Your Free Quote</h2>
-      <p>Contact us today to schedule your furniture assembly service.</p>
+  <!-- Contact Options -->
+  <section class="contact-methods">
+    <div class="container">
+      <div class="methods-grid">
+        <div class="method-card">
+          <div class="method-icon">📞</div>
+          <h3>Call Us</h3>
+          <p>Speak directly with Andre for instant quotes and scheduling</p>
+          <a href="tel:+14795550123" class="contact-link">(479) 555-0123</a>
+          <p class="method-note">Click to call on mobile</p>
+        </div>
 
-      <div>
-        <h3>Call Us</h3>
-        <p>Phone: [Your Phone Number]</p>
+        <div class="method-card">
+          <div class="method-icon">✉️</div>
+          <h3>Email Us</h3>
+          <p>Send us a message and we'll respond within 24 hours</p>
+          <a href="mailto:info@furnitureassemblyfortsmith.com" class="contact-link">info@furnitureassemblyfortsmith.com</a>
+          <p class="method-note">We check email daily</p>
+        </div>
+
+        <div class="method-card">
+          <div class="method-icon">📝</div>
+          <h3>Contact Form</h3>
+          <p>Fill out the form below and we'll get back to you quickly</p>
+          <a href="#contact-form" class="contact-link">Jump to Form</a>
+          <p class="method-note">Usually respond same day</p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div>
-        <h3>Email Us</h3>
-        <p>Email: [Your Email Address]</p>
+  <!-- Business Hours -->
+  <section class="business-hours">
+    <div class="container">
+      <h2 class="section-title">Business Hours</h2>
+      <div class="hours-card">
+        <div class="hours-grid">
+          <div class="hours-row">
+            <span class="day">Monday - Friday</span>
+            <span class="time">8:00 AM - 6:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Saturday</span>
+            <span class="time">8:00 AM - 6:00 PM</span>
+          </div>
+          <div class="hours-row highlight">
+            <span class="day">Sunday</span>
+            <span class="time">By Appointment</span>
+          </div>
+        </div>
+        <p class="hours-note">
+          <strong>Need service outside these hours?</strong> We understand life gets busy. Call us to discuss flexible scheduling options.
+        </p>
       </div>
+    </div>
+  </section>
 
-      <div>
-        <h3>Service Hours</h3>
-        <p>Monday - Saturday: 8:00 AM - 6:00 PM</p>
-        <p>Sunday: By Appointment</p>
+  <!-- Contact Form -->
+  <section class="contact-form-section" id="contact-form">
+    <div class="container">
+      <h2 class="section-title">Send Us a Message</h2>
+      <div class="form-container">
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+
+          <!-- Honeypot for spam protection -->
+          <p class="hidden">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="John Smith"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="john@example.com"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                placeholder="(479) 555-0123"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="service-type">Service Type</label>
+              <select id="service-type" name="service-type">
+                <option value="">Select a service...</option>
+                <option value="furniture-assembly">Furniture Assembly</option>
+                <option value="ikea-assembly">IKEA Assembly</option>
+                <option value="office-furniture">Office Furniture</option>
+                <option value="outdoor-furniture">Outdoor Furniture</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="message">Tell Us About Your Project *</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              placeholder="Please describe the furniture you need assembled, when you'd like it done, and any other details that would help us serve you better."
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-button">Send Message</button>
+            <p class="form-note">We'll respond within 24 hours, usually much sooner!</p>
+          </div>
+        </form>
+
+        <div class="form-sidebar">
+          <div class="sidebar-card">
+            <h3>What Happens Next?</h3>
+            <ol class="process-list">
+              <li>We review your message and project details</li>
+              <li>We contact you with a quote and availability</li>
+              <li>We schedule a convenient time for your assembly</li>
+              <li>We arrive on time and get the job done right</li>
+            </ol>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Quick Response Guarantee</h3>
+            <p>We respond to all inquiries within 24 hours, but usually within a few hours during business days.</p>
+            <p><strong>Need faster service?</strong> Call us directly at <a href="tel:+14795550123">(479) 555-0123</a> for immediate assistance.</p>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- Service Area -->
+  <section class="service-area-reminder">
+    <div class="container">
+      <h2 class="section-title">Our Service Area</h2>
+      <p class="service-intro">
+        We proudly serve Fort Smith and the surrounding Arkansas River Valley communities.
+      </p>
+
+      <div class="service-area-content">
+        <div class="area-list">
+          <h3>Primary Service Areas:</h3>
+          <ul>
+            <li><strong>Fort Smith, AR</strong> - Our home base</li>
+            <li><strong>Van Buren, AR</strong> - 10-15 min travel</li>
+            <li><strong>Alma, AR</strong> - 15-20 min travel</li>
+            <li><strong>Barling, AR</strong> - 10 min travel</li>
+            <li><strong>Greenwood, AR</strong> - 20-25 min travel</li>
+            <li><strong>Ozark, AR</strong> - 25-30 min travel</li>
+          </ul>
+        </div>
+
+        <div class="area-details">
+          <h3>Not sure if we serve your area?</h3>
+          <p>We serve the entire Fort Smith metro area and Arkansas River Valley region. If you're within 30 miles of Fort Smith, we can likely help you!</p>
+          <a href="/service-area" class="area-link">View Full Service Area Map →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="contact-cta">
+    <div class="container">
+      <h2>Ready to Get Started?</h2>
+      <p>Don't spend your weekend fighting with furniture instructions. Let us handle the assembly while you enjoy your time.</p>
+      <div class="cta-buttons">
+        <a href="tel:+14795550123" class="cta-primary">
+          <span class="phone-icon">📞</span>
+          Call Now: (479) 555-0123
+        </a>
+        <a href="/pricing" class="cta-secondary">View Our Pricing</a>
+      </div>
+      <p class="guarantee">100% Satisfaction Guaranteed • Licensed & Insured • Same-Day Service Available</p>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* Page Header */
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+    line-height: 1.2;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--color-accent);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Section Styles */
+  section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--color-primary);
+  }
+
+  /* Contact Methods */
+  .contact-methods {
+    background-color: var(--color-white);
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .method-card {
+    background-color: var(--color-accent);
+    padding: 2.5rem 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .method-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .method-card h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .method-card p {
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .contact-link {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin: 1rem 0;
+    word-wrap: break-word;
+  }
+
+  .contact-link:hover {
+    color: var(--color-primary);
+  }
+
+  .method-note {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    font-style: italic;
+  }
+
+  /* Business Hours */
+  .business-hours {
+    background-color: var(--color-accent);
+  }
+
+  .hours-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .hours-grid {
+    margin-bottom: 2rem;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-accent);
+  }
+
+  .hours-row:last-child {
+    border-bottom: none;
+  }
+
+  .hours-row.highlight {
+    background-color: var(--color-accent);
+    border-radius: 5px;
+  }
+
+  .day {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .time {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  .hours-note {
+    background-color: var(--color-accent);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .hours-note strong {
+    color: var(--color-primary);
+  }
+
+  /* Contact Form Section */
+  .contact-form-section {
+    background-color: var(--color-white);
+  }
+
+  .form-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-form {
+    background-color: var(--color-accent);
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.875rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background-color: var(--color-white);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+  }
+
+  .form-actions {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .submit-button {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 1rem 3rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
+
+  .submit-button:hover {
+    background-color: #16a085;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .form-note {
+    margin-top: 1rem;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+
+  /* Form Sidebar */
+  .form-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .sidebar-card {
+    background-color: var(--color-accent);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar-card h3 {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-card p {
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .sidebar-card a {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .process-list {
+    list-style: none;
+    counter-reset: process-counter;
+    padding-left: 0;
+  }
+
+  .process-list li {
+    counter-increment: process-counter;
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  .process-list li::before {
+    content: counter(process-counter);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* Service Area Reminder */
+  .service-area-reminder {
+    background-color: var(--color-accent);
+  }
+
+  .service-intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin-bottom: 3rem;
+  }
+
+  .service-area-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .area-list,
+  .area-details {
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .area-list h3,
+  .area-details h3 {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .area-list ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .area-list li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--color-text);
+  }
+
+  .area-list li::before {
+    content: "📍";
+    position: absolute;
+    left: 0;
+  }
+
+  .area-details p {
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .area-link {
+    display: inline-block;
+    color: var(--color-secondary);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .area-link:hover {
+    color: var(--color-primary);
+  }
+
+  /* CTA Section */
+  .contact-cta {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .contact-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+  }
+
+  .contact-cta > .container > p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-accent);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-primary {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cta-primary:hover {
+    background-color: #16a085;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: var(--color-white);
+  }
+
+  .cta-secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--color-white);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .cta-secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+  }
+
+  .phone-icon {
+    font-size: 1.3rem;
+  }
+
+  .guarantee {
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 968px) {
+    .form-container {
+      grid-template-columns: 1fr;
+    }
+
+    .service-area-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 3rem 0;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .methods-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+      padding: 2rem;
+    }
+
+    .hours-card {
+      padding: 2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 0.875rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .intro {
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .contact-form {
+      padding: 1.5rem;
+    }
+
+    .hours-card {
+      padding: 1.5rem;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+    }
+  }
+</style>
