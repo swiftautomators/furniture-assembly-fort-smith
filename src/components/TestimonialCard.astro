@@ -1,0 +1,92 @@
+---
+/**
+ * TestimonialCard Component
+ * Displays customer testimonials
+ */
+
+interface Props {
+  quote: string;
+  name: string;
+  city: string;
+}
+
+const { quote, name, city } = Astro.props;
+---
+
+<div class="testimonial-card">
+  <div class="quote-icon">❝</div>
+  <blockquote class="quote">
+    {quote}
+  </blockquote>
+  <div class="author">
+    <p class="name">{name}</p>
+    <p class="city">{city}</p>
+  </div>
+  <div class="stars">★★★★★</div>
+</div>
+
+<style>
+  .testimonial-card {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-accent);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .quote-icon {
+    font-size: 3rem;
+    color: var(--color-secondary);
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+  }
+
+  .quote {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .author {
+    margin-bottom: 1rem;
+  }
+
+  .name {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+  }
+
+  .city {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    opacity: 0.8;
+  }
+
+  .stars {
+    color: #ffc107;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-card {
+      padding: 1.5rem;
+    }
+
+    .quote {
+      font-size: 1rem;
+    }
+  }
+</style>
