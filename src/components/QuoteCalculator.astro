@@ -1,0 +1,523 @@
+---
+/**
+ * Quote Calculator Component
+ * Interactive pricing calculator for furniture assembly
+ */
+---
+
+<div class="quote-calculator">
+  <div class="calculator-header">
+    <h3>Get Your Instant Quote</h3>
+    <p>Select the items you need assembled to see your estimated price</p>
+  </div>
+
+  <div class="calculator-body">
+    <!-- Left Column - Item Selection -->
+    <div class="selection-column">
+      <div class="category-selector">
+        <label for="category-select">Select Category:</label>
+        <select id="category-select">
+          <option value="">-- Choose a Category --</option>
+          <option value="bedroom">Bedroom Furniture</option>
+          <option value="living">Living Room Furniture</option>
+          <option value="office">Office Furniture</option>
+          <option value="outdoor">Outdoor & Patio</option>
+          <option value="dining">Kitchen & Dining</option>
+        </select>
+      </div>
+
+      <div class="items-container" id="items-container">
+        <p class="select-prompt">Please select a category to see available items</p>
+      </div>
+    </div>
+
+    <!-- Right Column - Total Display -->
+    <div class="total-column">
+      <div class="total-card">
+        <h4>Your Estimate</h4>
+
+        <div class="selected-items-list" id="selected-items-list">
+          <p class="empty-message">No items selected yet</p>
+        </div>
+
+        <div class="total-section">
+          <div class="subtotal-row">
+            <span>Subtotal:</span>
+            <span id="subtotal">$0</span>
+          </div>
+          <div class="discount-row" id="discount-row" style="display: none;">
+            <span>Bulk Discount (10%):</span>
+            <span id="discount-amount">-$0</span>
+          </div>
+          <div class="total-row">
+            <span>Estimated Total:</span>
+            <span id="total-amount">$0</span>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <p>* Final price confirmed after item assessment</p>
+          <p>* Minimum service fee: $85</p>
+        </div>
+
+        <a href="/contact" class="book-button">Book This Service</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .quote-calculator {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .calculator-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .calculator-header h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-white);
+  }
+
+  .calculator-header p {
+    color: var(--color-accent);
+    font-size: 1.1rem;
+  }
+
+  .calculator-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .selection-column {
+    padding-right: 2rem;
+    border-right: 2px solid var(--color-accent);
+  }
+
+  .category-selector {
+    margin-bottom: 2rem;
+  }
+
+  .category-selector label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  #category-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    background-color: var(--color-white);
+    cursor: pointer;
+  }
+
+  #category-select:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+  }
+
+  .items-container {
+    min-height: 300px;
+  }
+
+  .select-prompt {
+    text-align: center;
+    color: var(--color-text);
+    opacity: 0.7;
+    padding: 2rem 0;
+    font-style: italic;
+  }
+
+  .items-group {
+    display: none;
+  }
+
+  .items-group.active {
+    display: block;
+  }
+
+  .items-group h4 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .item-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--color-accent);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .item-checkbox:hover {
+    background-color: #dfe6e9;
+  }
+
+  .item-checkbox input[type="checkbox"] {
+    margin-right: 0.75rem;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
+
+  .item-checkbox label {
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item-name {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .item-price {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  /* Total Column */
+  .total-column {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  .total-card {
+    background-color: var(--color-accent);
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .total-card h4 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .selected-items-list {
+    margin-bottom: 1.5rem;
+    min-height: 100px;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
+  .empty-message {
+    text-align: center;
+    color: var(--color-text);
+    opacity: 0.6;
+    font-style: italic;
+    padding: 1rem 0;
+  }
+
+  .selected-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.95rem;
+  }
+
+  .selected-item:last-child {
+    border-bottom: none;
+  }
+
+  .total-section {
+    border-top: 2px solid #ccc;
+    padding-top: 1rem;
+  }
+
+  .subtotal-row,
+  .discount-row,
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .discount-row {
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .total-row {
+    border-top: 2px solid var(--color-primary);
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .disclaimer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ccc;
+  }
+
+  .disclaimer p {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+  }
+
+  .book-button {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+
+  .book-button:hover {
+    background-color: #16a085;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--color-white);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 968px) {
+    .calculator-body {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .selection-column {
+      padding-right: 0;
+      border-right: none;
+      border-bottom: 2px solid var(--color-accent);
+      padding-bottom: 2rem;
+    }
+
+    .total-column {
+      position: static;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .calculator-header h3 {
+      font-size: 1.5rem;
+    }
+
+    .calculator-body {
+      padding: 1.5rem;
+    }
+
+    .total-row {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  // Furniture items with pricing (using low-end tier estimates)
+  const furnitureItems = {
+    bedroom: [
+      { name: 'Twin/Full Bed', price: 110 },
+      { name: 'Queen/King Bed', price: 130 },
+      { name: 'Dresser (3-4 drawers)', price: 120 },
+      { name: 'Dresser (6+ drawers)', price: 160 },
+      { name: 'Nightstand', price: 60 },
+      { name: 'Wardrobe/Armoire', price: 200 },
+      { name: 'IKEA PAX System (small)', price: 225 },
+      { name: 'IKEA PAX System (large)', price: 300 },
+    ],
+    living: [
+      { name: 'TV Stand (small)', price: 90 },
+      { name: 'Entertainment Center', price: 150 },
+      { name: 'Coffee Table', price: 70 },
+      { name: 'Bookshelf (3-4 shelves)', price: 80 },
+      { name: 'Bookshelf (5+ shelves)', price: 120 },
+      { name: 'Storage Cabinet', price: 110 },
+      { name: 'Sectional Sofa', price: 180 },
+    ],
+    office: [
+      { name: 'Simple Desk', price: 90 },
+      { name: 'L-Shaped Desk', price: 150 },
+      { name: 'U-Shaped Desk', price: 200 },
+      { name: 'Office Chair', price: 50 },
+      { name: 'Filing Cabinet', price: 80 },
+      { name: 'Bookshelf', price: 90 },
+      { name: 'Office Cubicle System', price: 250 },
+    ],
+    outdoor: [
+      { name: 'Patio Table', price: 100 },
+      { name: 'Patio Chair Set (4)', price: 120 },
+      { name: 'Gas Grill', price: 140 },
+      { name: 'Storage Shed (small)', price: 200 },
+      { name: 'Storage Shed (large)', price: 300 },
+      { name: 'Gazebo/Pergola', price: 250 },
+      { name: 'Swing Set', price: 225 },
+      { name: 'Trampoline', price: 180 },
+    ],
+    dining: [
+      { name: 'Dining Table (4-seater)', price: 110 },
+      { name: 'Dining Table (6+ seater)', price: 150 },
+      { name: 'Dining Chairs (set of 4)', price: 80 },
+      { name: 'Kitchen Island/Cart', price: 120 },
+      { name: "Baker's Rack", price: 90 },
+      { name: 'China Cabinet', price: 160 },
+      { name: 'Bar Stools (set of 2)', price: 60 },
+    ],
+  };
+
+  // Track selected items
+  let selectedItems = [];
+
+  // Initialize calculator
+  document.addEventListener('DOMContentLoaded', () => {
+    const categorySelect = document.getElementById('category-select');
+    const itemsContainer = document.getElementById('items-container');
+
+    // Create item groups for each category
+    Object.keys(furnitureItems).forEach(category => {
+      const groupDiv = document.createElement('div');
+      groupDiv.className = 'items-group';
+      groupDiv.id = `items-${category}`;
+
+      const title = document.createElement('h4');
+      title.textContent = getCategoryTitle(category);
+      groupDiv.appendChild(title);
+
+      furnitureItems[category].forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item-checkbox';
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `${category}-${index}`;
+        checkbox.dataset.category = category;
+        checkbox.dataset.index = index;
+        checkbox.addEventListener('change', handleItemToggle);
+
+        const label = document.createElement('label');
+        label.htmlFor = `${category}-${index}`;
+        label.innerHTML = `
+          <span class="item-name">${item.name}</span>
+          <span class="item-price">$${item.price}</span>
+        `;
+
+        itemDiv.appendChild(checkbox);
+        itemDiv.appendChild(label);
+        groupDiv.appendChild(itemDiv);
+      });
+
+      itemsContainer.appendChild(groupDiv);
+    });
+
+    // Handle category selection
+    categorySelect.addEventListener('change', (e) => {
+      // Hide all groups
+      document.querySelectorAll('.items-group').forEach(group => {
+        group.classList.remove('active');
+      });
+
+      // Show selected group
+      if (e.target.value) {
+        const selectedGroup = document.getElementById(`items-${e.target.value}`);
+        if (selectedGroup) {
+          selectedGroup.classList.add('active');
+        }
+      }
+    });
+  });
+
+  function getCategoryTitle(category) {
+    const titles = {
+      bedroom: 'Bedroom Furniture',
+      living: 'Living Room Furniture',
+      office: 'Office Furniture',
+      outdoor: 'Outdoor & Patio',
+      dining: 'Kitchen & Dining',
+    };
+    return titles[category] || category;
+  }
+
+  function handleItemToggle(e) {
+    const checkbox = e.target;
+    const category = checkbox.dataset.category;
+    const index = parseInt(checkbox.dataset.index);
+    const item = furnitureItems[category][index];
+
+    if (checkbox.checked) {
+      selectedItems.push({ ...item, id: `${category}-${index}` });
+    } else {
+      selectedItems = selectedItems.filter(i => i.id !== `${category}-${index}`);
+    }
+
+    updateTotal();
+  }
+
+  function updateTotal() {
+    const selectedItemsList = document.getElementById('selected-items-list');
+    const subtotalEl = document.getElementById('subtotal');
+    const discountRow = document.getElementById('discount-row');
+    const discountAmountEl = document.getElementById('discount-amount');
+    const totalAmountEl = document.getElementById('total-amount');
+
+    // Update selected items list
+    if (selectedItems.length === 0) {
+      selectedItemsList.innerHTML = '<p class="empty-message">No items selected yet</p>';
+    } else {
+      selectedItemsList.innerHTML = selectedItems.map(item => `
+        <div class="selected-item">
+          <span>${item.name}</span>
+          <span>$${item.price}</span>
+        </div>
+      `).join('');
+    }
+
+    // Calculate subtotal
+    const subtotal = selectedItems.reduce((sum, item) => sum + item.price, 0);
+    subtotalEl.textContent = `$${subtotal}`;
+
+    // Apply bulk discount (10% for 5+ items)
+    let discount = 0;
+    if (selectedItems.length >= 5) {
+      discount = Math.round(subtotal * 0.1);
+      discountRow.style.display = 'flex';
+      discountAmountEl.textContent = `-$${discount}`;
+    } else {
+      discountRow.style.display = 'none';
+    }
+
+    // Calculate final total
+    const total = subtotal - discount;
+
+    // Apply minimum service fee
+    const finalTotal = Math.max(total, 85);
+    totalAmountEl.textContent = `$${finalTotal}`;
+  }
+</script>

@@ -1,29 +1,654 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import QuoteCalculator from '../components/QuoteCalculator.astro';
 ---
 
 <Layout
   title="Transparent Pricing | Furniture Assembly Fort Smith"
-  description="Clear, flat-rate pricing for furniture assembly in Fort Smith. Simple: $110-$130, Medium: $150-$200, Complex: $225-$300+. No hidden fees."
+  description="Clear, flat-rate pricing for furniture assembly in Fort Smith. Simple: $110-$130, Medium: $150-$200, Complex: $225-$300+. No hidden fees. Get your instant quote."
 >
-  <main>
-    <h1>Transparent Flat-Rate Pricing</h1>
-    <p>No hidden fees. You'll know exactly what you'll pay before we start.</p>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Transparent, Flat-Rate Pricing</h1>
+      <p class="intro">
+        No surprises. No hidden fees. You'll know exactly what you'll pay before we start. Our upfront pricing means you can budget with confidence.
+      </p>
+    </div>
+  </section>
 
-    <section>
-      <h2>Flat-Rate Tiers</h2>
-      <div>
-        <h3>Tier 1 (Simple): $110-$130</h3>
-        <p>Nightstands, small desks, chairs</p>
+  <!-- Pricing Philosophy -->
+  <section class="pricing-philosophy">
+    <div class="container">
+      <h2 class="section-title">Our Pricing Commitment</h2>
+      <div class="philosophy-content">
+        <p>
+          We believe in complete transparency. Unlike hourly services that leave you guessing about the final cost, our flat-rate pricing gives you certainty from the start. You select your items, we provide an instant quote, and that's what you pay—no surprises when we're done.
+        </p>
+        <p>
+          All quotes include professional assembly, cleanup of packaging materials, and our 100% satisfaction guarantee. We bring all necessary tools and expertise to get the job done right the first time.
+        </p>
       </div>
-      <div>
-        <h3>Tier 2 (Medium): $150-$200</h3>
-        <p>Dressers, beds, dining tables</p>
+    </div>
+  </section>
+
+  <!-- Pricing Tiers -->
+  <section class="pricing-tiers">
+    <div class="container">
+      <h2 class="section-title">Flat-Rate Pricing Tiers</h2>
+      <p class="tiers-intro">All prices are flat-rate per item. No hourly charges, no guessing games.</p>
+
+      <div class="tiers-grid">
+        <!-- Tier 1 -->
+        <div class="tier-card tier-1">
+          <div class="tier-badge">Tier 1</div>
+          <h3>Simple Assembly</h3>
+          <div class="tier-price">$110 - $130</div>
+          <p class="tier-description">Quick, straightforward furniture pieces that typically take 30-60 minutes.</p>
+          <h4>Examples:</h4>
+          <ul class="tier-examples">
+            <li>Nightstands</li>
+            <li>Small desks</li>
+            <li>Dining chairs</li>
+            <li>Small bookshelves</li>
+            <li>Coffee tables</li>
+            <li>TV stands (basic)</li>
+          </ul>
+        </div>
+
+        <!-- Tier 2 -->
+        <div class="tier-card tier-2 featured">
+          <div class="tier-badge featured-badge">Most Popular</div>
+          <h3>Medium Assembly</h3>
+          <div class="tier-price">$150 - $200</div>
+          <p class="tier-description">More complex pieces requiring additional time and expertise.</p>
+          <h4>Examples:</h4>
+          <ul class="tier-examples">
+            <li>Dressers (3-6 drawers)</li>
+            <li>Queen/King beds</li>
+            <li>Dining tables</li>
+            <li>Office desks</li>
+            <li>Entertainment centers</li>
+            <li>Large bookshelves</li>
+          </ul>
+        </div>
+
+        <!-- Tier 3 -->
+        <div class="tier-card tier-3">
+          <div class="tier-badge">Tier 3</div>
+          <h3>Complex Assembly</h3>
+          <div class="tier-price">$225 - $300+</div>
+          <p class="tier-description">Large, intricate systems requiring extensive assembly time.</p>
+          <h4>Examples:</h4>
+          <ul class="tier-examples">
+            <li>Wardrobes & armoires</li>
+            <li>IKEA PAX systems</li>
+            <li>Bunk beds & loft beds</li>
+            <li>Office cubicle systems</li>
+            <li>Large outdoor sheds</li>
+            <li>Complex wall units</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h3>Tier 3 (Complex): $225-$300+</h3>
-        <p>Wardrobes, bunk beds, office systems</p>
+
+      <!-- Additional Pricing Info -->
+      <div class="additional-pricing">
+        <div class="pricing-note">
+          <strong>Minimum Service Fee:</strong> $85 for jobs under $110
+        </div>
+        <div class="pricing-note">
+          <strong>Custom/Hourly Rate:</strong> $90/hour for unique or specialized projects
+        </div>
+        <div class="pricing-note bulk-discount">
+          <strong>Bulk Discount:</strong> Save 10-15% when you have 5 or more items assembled
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- Quote Calculator -->
+  <section class="calculator-section">
+    <div class="container">
+      <h2 class="section-title">Get Your Instant Quote</h2>
+      <p class="calculator-intro">Select the items you need assembled to see your personalized estimate</p>
+      <QuoteCalculator />
+    </div>
+  </section>
+
+  <!-- Add-on Services -->
+  <section class="addon-services">
+    <div class="container">
+      <h2 class="section-title">Value-Added Services</h2>
+      <p class="addons-intro">Enhance your service with these convenient add-ons</p>
+
+      <div class="addons-grid">
+        <div class="addon-card">
+          <div class="addon-icon">📦</div>
+          <h3>Premium Package</h3>
+          <div class="addon-price">+$25 - $50</div>
+          <p>Complete packaging removal and disposal, plus wall anchoring for safety and stability.</p>
+          <ul class="addon-features">
+            <li>All packaging hauled away</li>
+            <li>Cardboard & styrofoam disposal</li>
+            <li>Wall anchoring for tall furniture</li>
+            <li>Final placement adjustments</li>
+          </ul>
+        </div>
+
+        <div class="addon-card">
+          <div class="addon-icon">🔧</div>
+          <h3>Disassembly Service</h3>
+          <div class="addon-price">50% of Assembly Price</div>
+          <p>Need furniture taken apart for a move or storage? We'll carefully disassemble and organize all parts.</p>
+          <ul class="addon-features">
+            <li>Safe disassembly</li>
+            <li>Parts organized & labeled</li>
+            <li>Hardware bagged & tagged</li>
+            <li>Ready for transport</li>
+          </ul>
+        </div>
+
+        <div class="addon-card">
+          <div class="addon-icon">🚛</div>
+          <h3>Packaging Haul-Away</h3>
+          <div class="addon-price">+$20 - $35</div>
+          <p>We'll remove all boxes, packaging materials, and debris, leaving your space clean and ready to enjoy.</p>
+          <ul class="addon-features">
+            <li>Complete debris removal</li>
+            <li>Responsible recycling</li>
+            <li>Spotless cleanup</li>
+            <li>No mess left behind</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="pricing-faq">
+    <div class="container">
+      <h2 class="section-title">Pricing FAQs</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Do you charge for travel to my location?</h4>
+          <p>No travel fees within Fort Smith and the Arkansas River Valley service area (Van Buren, Alma, Greenwood).</p>
+        </div>
+        <div class="faq-item">
+          <h4>What payment methods do you accept?</h4>
+          <p>We accept cash, all major credit cards, Venmo, and Zelle. Payment is due upon completion of service.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I get a quote over the phone?</h4>
+          <p>Absolutely! Call us at (479) 555-0123 and we'll provide an instant quote based on your furniture items.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What if my furniture takes longer than expected?</h4>
+          <p>Our flat-rate pricing means the quoted price is what you pay, regardless of how long assembly takes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="pricing-cta">
+    <div class="container">
+      <h2>Ready to Book Your Assembly?</h2>
+      <p>Get started with transparent pricing and professional service you can trust.</p>
+      <div class="cta-buttons">
+        <a href="/contact" class="cta-primary">Schedule Your Service</a>
+        <a href="tel:+14795550123" class="cta-secondary">
+          <span class="phone-icon">📞</span>
+          Call Now: (479) 555-0123
+        </a>
+      </div>
+      <p class="guarantee">100% Satisfaction Guaranteed • Licensed & Insured • Same-Day Service Available</p>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* Page Header */
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+    line-height: 1.2;
+  }
+
+  .intro {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--color-accent);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Section Styles */
+  section {
+    padding: 4rem 0;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  /* Pricing Philosophy */
+  .pricing-philosophy {
+    background-color: var(--color-white);
+  }
+
+  .philosophy-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .philosophy-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Pricing Tiers */
+  .pricing-tiers {
+    background-color: var(--color-accent);
+  }
+
+  .tiers-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 3rem;
+  }
+
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .tier-card {
+    background-color: var(--color-white);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .tier-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .tier-card.featured {
+    border: 3px solid var(--color-secondary);
+  }
+
+  .tier-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .featured-badge {
+    background-color: var(--color-secondary);
+  }
+
+  .tier-card h3 {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .tier-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+  }
+
+  .tier-description {
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .tier-card h4 {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .tier-examples {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .tier-examples li {
+    padding: 0.4rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--color-text);
+  }
+
+  .tier-examples li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: 700;
+  }
+
+  .additional-pricing {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .pricing-note {
+    background-color: var(--color-white);
+    padding: 1.25rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .pricing-note.bulk-discount {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+  }
+
+  .pricing-note strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+  }
+
+  /* Calculator Section */
+  .calculator-section {
+    background-color: var(--color-white);
+  }
+
+  .calculator-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 3rem;
+  }
+
+  /* Add-on Services */
+  .addon-services {
+    background-color: var(--color-accent);
+  }
+
+  .addons-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 3rem;
+  }
+
+  .addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .addon-card {
+    background-color: var(--color-white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .addon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .addon-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .addon-card h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .addon-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+  }
+
+  .addon-card > p {
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .addon-features {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .addon-features li {
+    padding: 0.4rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--color-text);
+  }
+
+  .addon-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: 700;
+  }
+
+  /* FAQ Section */
+  .pricing-faq {
+    background-color: var(--color-white);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background-color: var(--color-accent);
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .faq-item h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .faq-item p {
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  /* CTA Section */
+  .pricing-cta {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
+    color: var(--color-white);
+    text-align: center;
+    padding: 5rem 0;
+  }
+
+  .pricing-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+  }
+
+  .pricing-cta > .container > p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-accent);
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-primary {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-primary:hover {
+    background-color: #16a085;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: var(--color-white);
+  }
+
+  .cta-secondary {
+    background-color: transparent;
+    color: var(--color-white);
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--color-white);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .cta-secondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+  }
+
+  .phone-icon {
+    font-size: 1.3rem;
+  }
+
+  .guarantee {
+    font-size: 1rem;
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 3rem 0;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .tiers-grid,
+    .addons-grid,
+    .faq-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .additional-pricing {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+      width: 100%;
+      justify-content: center;
+      font-size: 1rem;
+      padding: 0.875rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .intro {
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+    }
+
+    .tier-price {
+      font-size: 1.75rem;
+    }
+
+    .pricing-cta h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
