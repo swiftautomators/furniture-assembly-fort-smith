@@ -903,12 +903,17 @@ import { CONTACT_INFO, SERVICE_TYPES } from '../config';
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form-element') as HTMLFormElement;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-    const buttonText = submitBtn.querySelector('.button-text') as HTMLElement;
-    const buttonSpinner = submitBtn.querySelector('.button-spinner') as HTMLElement;
+    const buttonText = submitBtn?.querySelector('.button-text') as HTMLElement;
+    const buttonSpinner = submitBtn?.querySelector('.button-spinner') as HTMLElement;
     const successMessage = document.getElementById('success-message') as HTMLElement;
     const errorMessage = document.getElementById('error-message') as HTMLElement;
 
-    form?.addEventListener('submit', async (e) => {
+    if (!form || !submitBtn || !buttonText || !buttonSpinner) {
+      console.error('Contact form elements not found');
+      return;
+    }
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Check honeypot
@@ -956,6 +961,8 @@ import { CONTACT_INFO, SERVICE_TYPES } from '../config';
       buttonSpinner.classList.remove('hidden');
 
       try {
+        console.log('Submitting contact form...');
+
         // Submit to webhook
         const result = await submitLead({
           name,
@@ -966,6 +973,8 @@ import { CONTACT_INFO, SERVICE_TYPES } from '../config';
           source: 'contact_form',
           timestamp: new Date().toISOString(),
         });
+
+        console.log('Submission result:', result);
 
         if (result.success) {
           // Show success message
@@ -983,7 +992,8 @@ import { CONTACT_INFO, SERVICE_TYPES } from '../config';
         errorMessage.classList.remove('hidden');
         errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } finally {
-        // Reset button state
+        // Always reset button state, even if there's an error
+        console.log('Resetting button state...');
         submitBtn.disabled = false;
         buttonText.classList.remove('hidden');
         buttonSpinner.classList.add('hidden');

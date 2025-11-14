@@ -16,6 +16,9 @@ export interface LeadData {
 }
 
 export async function submitLead(data: LeadData): Promise<{ success: boolean; error?: string }> {
+  console.log('Submitting lead to webhook:', WEBHOOK_URL);
+  console.log('Lead data:', data);
+
   try {
     const response = await fetch(WEBHOOK_URL, {
       method: 'POST',
@@ -25,9 +28,16 @@ export async function submitLead(data: LeadData): Promise<{ success: boolean; er
       body: JSON.stringify(data),
     });
 
+    console.log('Webhook response status:', response.status);
+
     if (!response.ok) {
+      const errorText = await response.text().catch(() => 'Unable to read error response');
+      console.error('Webhook error response:', errorText);
       throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const responseData = await response.text();
+    console.log('Webhook success response:', responseData);
 
     return { success: true };
   } catch (error) {

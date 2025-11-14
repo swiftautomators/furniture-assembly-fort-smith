@@ -975,6 +975,13 @@
     const closeSuccessBtn = document.getElementById('close-success');
     const retryBtn = document.getElementById('retry-booking');
 
+    if (!bookButton || !modal || !bookingForm || !submitBtn || !btnText || !btnSpinner) {
+      console.error('Quote calculator modal elements not found');
+      return;
+    }
+
+    console.log('Quote calculator initialized successfully');
+
     // Open modal
     bookButton?.addEventListener('click', () => {
       if (modal && selectedItems.length > 0) {
@@ -1055,6 +1062,8 @@
       btnSpinner.classList.remove('hidden');
 
       try {
+        console.log('Submitting quote booking...');
+
         // Dynamically import the webhook utility
         const { submitLead } = await import('../utils/webhook');
 
@@ -1074,6 +1083,8 @@
           timestamp: new Date().toISOString(),
         });
 
+        console.log('Quote booking result:', result);
+
         if (result.success) {
           // Show success message
           bookingForm.classList.add('hidden');
@@ -1087,7 +1098,8 @@
         bookingForm.classList.add('hidden');
         errorDiv?.classList.remove('hidden');
       } finally {
-        // Reset button state
+        // Always reset button state, even if there's an error
+        console.log('Resetting quote booking button state...');
         submitBtn.disabled = false;
         btnText.classList.remove('hidden');
         btnSpinner.classList.add('hidden');
