@@ -1,0 +1,6 @@
+# robots.txt for Furniture Assembly Fort Smith
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://furnitureassemblyfortsmith.com/sitemap-index.xml
