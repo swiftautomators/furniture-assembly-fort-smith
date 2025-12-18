@@ -1,5 +1,6 @@
 ---
 // Header component for Furniture Assembly Fort Smith
+import { CONTACT_INFO } from '../config';
 ---
 
 <header class="site-header">
@@ -21,9 +22,9 @@
     </nav>
 
     <div class="header-cta">
-      <a href="tel:+14795550123" class="phone-link">
+      <a href={`tel:+1${CONTACT_INFO.phoneRaw}`} class="phone-link">
         <span class="phone-icon">📞</span>
-        (479) 555-0123
+        {CONTACT_INFO.phone}
       </a>
       <a href="/contact" class="cta-button">Get Free Quote</a>
     </div>

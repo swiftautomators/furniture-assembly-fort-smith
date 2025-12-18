@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { CONTACT_INFO, SERVICE_TYPES } from '../config';
 ---
 
 <Layout
@@ -24,7 +25,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="method-icon">📞</div>
           <h3>Call Us</h3>
           <p>Speak directly with Andre for instant quotes and scheduling</p>
-          <a href="tel:+14795550123" class="contact-link">(479) 555-0123</a>
+          <a href={`tel:+1${CONTACT_INFO.phoneRaw}`} class="contact-link">{CONTACT_INFO.phone}</a>
           <p class="method-note">Click to call on mobile</p>
         </div>
 
@@ -32,7 +33,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="method-icon">✉️</div>
           <h3>Email Us</h3>
           <p>Send us a message and we'll respond within 24 hours</p>
-          <a href="mailto:info@furnitureassemblyfortsmith.com" class="contact-link">info@furnitureassemblyfortsmith.com</a>
+          <a href={`mailto:${CONTACT_INFO.email}`} class="contact-link">{CONTACT_INFO.email}</a>
           <p class="method-note">We check email daily</p>
         </div>
 
@@ -78,13 +79,9 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <h2 class="section-title">Send Us a Message</h2>
       <div class="form-container">
-        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact" />
-
+        <form class="contact-form" id="contact-form-element">
           <!-- Honeypot for spam protection -->
-          <p class="hidden">
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-          </p>
+          <input type="text" name="bot-field" class="hidden" tabindex="-1" autocomplete="off" />
 
           <div class="form-grid">
             <div class="form-group">
@@ -94,8 +91,10 @@ import Layout from '../layouts/Layout.astro';
                 id="name"
                 name="name"
                 required
+                minlength="2"
                 placeholder="John Smith"
               />
+              <span class="error-message" id="name-error"></span>
             </div>
 
             <div class="form-group">
@@ -107,6 +106,7 @@ import Layout from '../layouts/Layout.astro';
                 required
                 placeholder="john@example.com"
               />
+              <span class="error-message" id="email-error"></span>
             </div>
 
             <div class="form-group">
@@ -116,19 +116,18 @@ import Layout from '../layouts/Layout.astro';
                 id="phone"
                 name="phone"
                 required
-                placeholder="(479) 555-0123"
+                placeholder={CONTACT_INFO.phone}
               />
+              <span class="error-message" id="phone-error"></span>
             </div>
 
             <div class="form-group">
               <label for="service-type">Service Type</label>
               <select id="service-type" name="service-type">
                 <option value="">Select a service...</option>
-                <option value="furniture-assembly">Furniture Assembly</option>
-                <option value="ikea-assembly">IKEA Assembly</option>
-                <option value="office-furniture">Office Furniture</option>
-                <option value="outdoor-furniture">Outdoor Furniture</option>
-                <option value="other">Other</option>
+                {SERVICE_TYPES.map(type => (
+                  <option value={type}>{type}</option>
+                ))}
               </select>
             </div>
           </div>
@@ -140,13 +139,35 @@ import Layout from '../layouts/Layout.astro';
               name="message"
               rows="6"
               required
+              minlength="10"
               placeholder="Please describe the furniture you need assembled, when you'd like it done, and any other details that would help us serve you better."
             ></textarea>
+            <span class="error-message" id="message-error"></span>
           </div>
 
           <div class="form-actions">
-            <button type="submit" class="submit-button">Send Message</button>
+            <button type="submit" class="submit-button" id="submit-btn">
+              <span class="button-text">Send Message</span>
+              <span class="button-spinner hidden">
+                <span class="spinner"></span>
+                Sending...
+              </span>
+            </button>
             <p class="form-note">We'll respond within 24 hours, usually much sooner!</p>
+          </div>
+
+          <!-- Success Message -->
+          <div class="form-message success-message hidden" id="success-message">
+            <div class="message-icon">✓</div>
+            <h3>Thank You!</h3>
+            <p>We've received your message and will contact you within 24 hours.</p>
+          </div>
+
+          <!-- Error Message -->
+          <div class="form-message error-message-box hidden" id="error-message">
+            <div class="message-icon">✕</div>
+            <h3>Oops! Something went wrong.</h3>
+            <p>Please try again or call us directly at <a href={`tel:+1${CONTACT_INFO.phoneRaw}`}>{CONTACT_INFO.phone}</a>.</p>
           </div>
         </form>
 
@@ -164,7 +185,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="sidebar-card">
             <h3>Quick Response Guarantee</h3>
             <p>We respond to all inquiries within 24 hours, but usually within a few hours during business days.</p>
-            <p><strong>Need faster service?</strong> Call us directly at <a href="tel:+14795550123">(479) 555-0123</a> for immediate assistance.</p>
+            <p><strong>Need faster service?</strong> Call us directly at <a href={`tel:+1${CONTACT_INFO.phoneRaw}`}>{CONTACT_INFO.phone}</a> for immediate assistance.</p>
           </div>
         </div>
       </div>
@@ -207,9 +228,9 @@ import Layout from '../layouts/Layout.astro';
       <h2>Ready to Get Started?</h2>
       <p>Don't spend your weekend fighting with furniture instructions. Let us handle the assembly while you enjoy your time.</p>
       <div class="cta-buttons">
-        <a href="tel:+14795550123" class="cta-primary">
+        <a href={`tel:+1${CONTACT_INFO.phoneRaw}`} class="cta-primary">
           <span class="phone-icon">📞</span>
-          Call Now: (479) 555-0123
+          Call Now: {CONTACT_INFO.phone}
         </a>
         <a href="/pricing" class="cta-secondary">View Our Pricing</a>
       </div>
@@ -219,6 +240,11 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+  /* Utility Classes */
+  .hidden {
+    display: none !important;
+  }
+
   /* Page Header */
   .page-header {
     background: linear-gradient(135deg, var(--color-primary) 0%, #34495e 100%);
@@ -460,12 +486,110 @@ import Layout from '../layouts/Layout.astro';
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: none;
+    position: relative;
   }
 
-  .submit-button:hover {
+  .submit-button:hover:not(:disabled) {
     background-color: #16a085;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .button-spinner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .error-message {
+    display: block;
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    min-height: 1.2em;
+  }
+
+  .form-message {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .form-message.success-message {
+    background-color: #d4edda;
+    border: 2px solid #28a745;
+  }
+
+  .form-message.error-message-box {
+    background-color: #f8d7da;
+    border: 2px solid #e74c3c;
+  }
+
+  .form-message .message-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-message.success-message .message-icon {
+    color: #28a745;
+  }
+
+  .form-message.error-message-box .message-icon {
+    color: #e74c3c;
+  }
+
+  .form-message h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-message.success-message h3 {
+    color: #155724;
+  }
+
+  .form-message.error-message-box h3 {
+    color: #721c24;
+  }
+
+  .form-message p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .form-message.success-message p {
+    color: #155724;
+  }
+
+  .form-message.error-message-box p {
+    color: #721c24;
+  }
+
+  .form-message.error-message-box a {
+    color: #721c24;
+    font-weight: 700;
+    text-decoration: underline;
   }
 
   .form-note {
@@ -777,3 +901,118 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 </style>
+
+<script>
+  import { submitLead } from '../utils/webhook';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form-element') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const buttonText = submitBtn?.querySelector('.button-text') as HTMLElement;
+    const buttonSpinner = submitBtn?.querySelector('.button-spinner') as HTMLElement;
+    const successMessage = document.getElementById('success-message') as HTMLElement;
+    const errorMessage = document.getElementById('error-message') as HTMLElement;
+
+    if (!form || !submitBtn || !buttonText || !buttonSpinner) {
+      console.error('Contact form elements not found');
+      return;
+    }
+
+    // Ensure loading states are hidden on page load
+    if (buttonSpinner) buttonSpinner.classList.add('hidden');
+    if (buttonText) buttonText.classList.remove('hidden');
+
+    // Ensure success/error messages are hidden on page load
+    if (successMessage) successMessage.classList.add('hidden');
+    if (errorMessage) errorMessage.classList.add('hidden');
+
+    console.log('Contact form initialized successfully');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Check honeypot
+      const honeypot = form.querySelector('input[name="bot-field"]') as HTMLInputElement;
+      if (honeypot?.value) {
+        return; // Likely spam
+      }
+
+      // Clear previous messages
+      successMessage.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+
+      // Get form data
+      const formData = new FormData(form);
+      const name = formData.get('name') as string;
+      const email = formData.get('email') as string;
+      const phone = formData.get('phone') as string;
+      const serviceType = formData.get('service-type') as string;
+      const message = formData.get('message') as string;
+
+      // Basic validation
+      if (!name || name.length < 2) {
+        alert('Please enter your name');
+        return;
+      }
+
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+      }
+
+      if (!phone) {
+        alert('Please enter your phone number');
+        return;
+      }
+
+      if (!message || message.length < 10) {
+        alert('Please provide more details about your project');
+        return;
+      }
+
+      // Show loading state
+      submitBtn.disabled = true;
+      buttonText.classList.add('hidden');
+      buttonSpinner.classList.remove('hidden');
+
+      try {
+        console.log('Submitting contact form...');
+
+        // Submit to webhook
+        const result = await submitLead({
+          name,
+          email,
+          phone,
+          service_type: serviceType,
+          project_description: message,
+          source: 'contact_form',
+          timestamp: new Date().toISOString(),
+        });
+
+        console.log('Submission result:', result);
+
+        if (result.success) {
+          // Show success message
+          successMessage.classList.remove('hidden');
+          form.reset();
+
+          // Scroll to success message
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error(result.error || 'Submission failed');
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        // Show error message
+        errorMessage.classList.remove('hidden');
+        errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } finally {
+        // Always reset button state, even if there's an error
+        console.log('Resetting button state...');
+        submitBtn.disabled = false;
+        buttonText.classList.remove('hidden');
+        buttonSpinner.classList.add('hidden');
+      }
+    });
+  });
+</script>
